@@ -1,0 +1,43 @@
+﻿@model IEnumerable<PortalWeb.Models.UserInRole>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-primary float-end" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Role.Name)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<PortalWeb.Models.App>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-primary float-end" asp-action="Create">Create New</a>
+</p>
+    <form asp-controller="Apps" asp-action="Index">
+        <p>
+            Title: <input type="text" name="SearchString" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Secret)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TagLine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LogoUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RedirectUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td class="w-10">
+                @Html.DisplayFor(modelItem => item.Secret)
+            </td>
+                <td class="w-10">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+                <td class="w-10">
+                @Html.DisplayFor(modelItem => item.TagLine)
+            </td>
+                <td class="w-10">
+                @Html.DisplayFor(modelItem => item.LogoUrl)
+            </td>
+                <td class="w-10">
+                @Html.DisplayFor(modelItem => item.RedirectUrl)
+            </td >
+                <td class="w-10">
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+                <td class="w-40">
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
